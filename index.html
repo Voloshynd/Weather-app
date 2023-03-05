@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./reset/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="./images/icons8-partly-cloudy-day-64.png">
+
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+    <header>
+        <nav>
+            <div class="name-page">
+                <i class="fa-solid fa-sun"></i>
+                <span class="name-of-page">TwojaPogoda.pl</span>
+            </div>
+            <div class="btn-container">
+                <button class="add-btn">Dodaj miasto <i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="find-conatiner hide">
+            <div class="navigation">
+                <span class="text-search">Znajdź miasto</span>
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <div class="search">
+                <input class="input-search" type="text" name="name" placeholder="np. Wrocław" />
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <small class="text-error"></small>
+            </div>
+        </div>
+
+        <div class="weather-container"></div>
+    </main>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
