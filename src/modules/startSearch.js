@@ -1,4 +1,4 @@
-function navigation() {
+function startSearch() {
   const addBtn = document.querySelector(".add-btn");
   const closeBtn = document.querySelector(".fa-circle-xmark");
   const searchModalWindow = document.querySelector(".find-conatiner");
@@ -28,4 +28,4 @@ function navigation() {
   });
 }
 
-export default navigation;
+export default startSearch;
