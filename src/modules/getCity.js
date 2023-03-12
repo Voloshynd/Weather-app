@@ -38,7 +38,7 @@ function getCity() {
   async function getApiData(city) {
     try {
       let response = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=5`
+        `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=5`
       );
       let data = await response.json();
       let arrForFiveDays = data.forecast.forecastday;

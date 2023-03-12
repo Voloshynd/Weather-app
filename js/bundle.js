@@ -12,18 +12,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function closeModals(){
-    const weatherContainer = document.querySelector(".weather-container");
-    weatherContainer.addEventListener("click", removeWeatherModalWindow);
-  
-    function removeWeatherModalWindow(e) {
-      if (e.target.classList.contains("fa-circle-xmark")) {
-        e.target.parentElement.parentElement.remove();
-      }
+function closeModals() {
+  const weatherContainer = document.querySelector(".weather-container");
+  weatherContainer.addEventListener("click", removeWeatherModalWindow);
+
+  function removeWeatherModalWindow(e) {
+    if (e.target.classList.contains("fa-circle-xmark")) {
+      e.target.parentElement.parentElement.remove();
     }
+  }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (closeModals);
+
 
 /***/ }),
 
@@ -52,18 +53,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-// function showPreloader(){
-    // const preloader = document.querySelector(".preloader");
-    
-    function displayLoader() {
-      document.querySelector(".preloader").classList.add("display");
-        setTimeout(() => {
-          document.querySelector(".preloader").classList.remove("display");
-        }, 1000);
-      }
-// }
+function displayLoader() {
+  document.querySelector(".preloader").classList.add("display");
+  setTimeout(() => {
+    document.querySelector(".preloader").classList.remove("display");
+  }, 1000);
+}
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayLoader); 
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayLoader);
+
 
 /***/ }),
 
@@ -83,77 +81,78 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- 
-function getCity(){
+
+function getCity() {
   const searchBtn = document.querySelector(".fa-magnifying-glass");
   const input = document.querySelector(".input-search");
 
   searchBtn.addEventListener("click", searchCity);
 
-    function searchCity() {
-        const errorMsg =
-          "Nazwa miasta musi zawierać co najmniej 3 znaki i nie może zawierać cyfr";
-        let text = input.value.trim();
-        let cityName = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-        if (cityName.length < 3 || /\d/.test(cityName)) {
-          input.style = "border: 2px solid #d50000";
-          document.querySelector(".text-error").textContent = errorMsg;
-          return;
-        } else {
-          input.style = "none";
-          input.value = "";
-          getApiData(cityName);
-          (0,_displayLoader__WEBPACK_IMPORTED_MODULE_1__["default"])();
-          document.querySelector(".text-error").textContent = "";
-        }
-      }
-    
-      document.addEventListener("keydown", (e) => {
-        if (e.code === "Enter") {
-          searchCity();
-          (0,_displayLoader__WEBPACK_IMPORTED_MODULE_1__["default"])();
-        }
-      });
-    
-      //Get Api data
-    
-      async function getApiData(city) {
-        try {
-          let response = await fetch(
-            `http://api.weatherapi.com/v1/forecast.json?key=${_config__WEBPACK_IMPORTED_MODULE_0__.API_KEY}&q=${city}&days=5`
-          );
-          let data = await response.json();
-          let arrForFiveDays = data.forecast.forecastday;
-    
-          const objForMainCity = {
-            city: city,
-            temperature: Math.ceil(data.current.temp_c),
-            humidity: data.current.humidity,
-            pressure: data.current.pressure_mb,
-            wind: data.current.wind_mph,
-            img: data.current.condition.icon,
-          };
-    
-          const objDataForFiveDays = {
-            arrayDays: arrForFiveDays.map((item) =>
-              new Date(item.date).toLocaleDateString("pl-PL", { weekday: "long" })
-            ),
-            arrayMaxTepForFiveDays: arrForFiveDays.map((item) =>
-              Math.ceil(item.day.maxtemp_c)
-            ),
-            arrayMinTepForFiveDays: arrForFiveDays.map((item) =>
-              Math.ceil(item.day.mintemp_c)
-            ),
-            arrayDaysIcon: arrForFiveDays.map((item) => item.day.condition.icon),
-          };
-          (0,_setCards__WEBPACK_IMPORTED_MODULE_2__["default"])(objForMainCity, objDataForFiveDays);
-        } catch (err) {
-          alert(err);
-        }
-      }
+  function searchCity() {
+    const errorMsg =
+      "Nazwa miasta musi zawierać co najmniej 3 znaki i nie może zawierać cyfr";
+    let text = input.value.trim();
+    let cityName = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    if (cityName.length < 3 || /\d/.test(cityName)) {
+      input.style = "border: 2px solid #d50000";
+      document.querySelector(".text-error").textContent = errorMsg;
+      return;
+    } else {
+      input.style = "none";
+      input.value = "";
+      getApiData(cityName);
+      (0,_displayLoader__WEBPACK_IMPORTED_MODULE_1__["default"])();
+      document.querySelector(".text-error").textContent = "";
+    }
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Enter") {
+      searchCity();
+      (0,_displayLoader__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    }
+  });
+
+  //Get Api data
+
+  async function getApiData(city) {
+    try {
+      let response = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=${_config__WEBPACK_IMPORTED_MODULE_0__.API_KEY}&q=${city}&days=5`
+      );
+      let data = await response.json();
+      let arrForFiveDays = data.forecast.forecastday;
+
+      const objForMainCity = {
+        city: city,
+        temperature: Math.ceil(data.current.temp_c),
+        humidity: data.current.humidity,
+        pressure: data.current.pressure_mb,
+        wind: data.current.wind_mph,
+        img: data.current.condition.icon,
+      };
+
+      const objDataForFiveDays = {
+        arrayDays: arrForFiveDays.map((item) =>
+          new Date(item.date).toLocaleDateString("pl-PL", { weekday: "long" })
+        ),
+        arrayMaxTepForFiveDays: arrForFiveDays.map((item) =>
+          Math.ceil(item.day.maxtemp_c)
+        ),
+        arrayMinTepForFiveDays: arrForFiveDays.map((item) =>
+          Math.ceil(item.day.mintemp_c)
+        ),
+        arrayDaysIcon: arrForFiveDays.map((item) => item.day.condition.icon),
+      };
+      (0,_setCards__WEBPACK_IMPORTED_MODULE_2__["default"])(objForMainCity, objDataForFiveDays);
+    } catch (err) {
+      alert(err);
+    }
+  }
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getCity); 
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getCity);
+
 
 /***/ }),
 
@@ -291,7 +290,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function navigation() {
+function startSearch() {
   const addBtn = document.querySelector(".add-btn");
   const closeBtn = document.querySelector(".fa-circle-xmark");
   const searchModalWindow = document.querySelector(".find-conatiner");
@@ -321,7 +320,7 @@ function navigation() {
   });
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (navigation);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (startSearch);
 
 
 /***/ })
