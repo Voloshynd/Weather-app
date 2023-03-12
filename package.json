@@ -7,5 +7,23 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dmytro Voloshyn",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Voloshynd/Weather-app.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Voloshynd/Weather-app/issues"
+  },
+  "homepage": "https://github.com/Voloshynd/Weather-app#readme",
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "process": "^0.11.10",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "dotenv-webpack": "^8.0.1"
+  }
 }
